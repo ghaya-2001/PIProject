@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { AddEventComponent } from './Components/event/add-event/add-event.component';
 import { EventDetailsComponent } from './Components/event/event-details/event-details.component';
 import { FeedbackComponent } from './Components/feedback/feedback.component';
@@ -27,55 +27,52 @@ import { CampPlaceTableComponent } from './Components/campPlace/camp-place-table
 import { FeedbackListComponent } from './feedback-list/feedback-list.component';
 import { ReservationListComponent } from './reservation-list/reservation-list.component';
 
-
-
 const routes: Routes = [
-  {path: "", component: HomeComponent},
-  {path: "home", component: HomeComponent},
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'user/management', component: UserComponent},
-  { path: 'addUser', component: EditUserComponent},
+  { path: 'user/management', component: UserComponent },
+  { path: 'addUser', component: EditUserComponent },
 
+  /*{ path: 'event', component: EventCardComponent },
+  { path: 'feedback/:idCampPlace', component: FeedbackComponent },
+  { path: 'reservation/:idEvent', component: ReservationComponent },
 
-  {path: "event", component: EventCardComponent},
-  {path: "feedback/:idCampPlace", component: FeedbackComponent},
-  {path: "reservation/:idEvent", component: ReservationComponent},
+  { path: 'addEvent/:idEvent', component: AddEventComponent },
 
-  {path: "addEvent/:idEvent", component: AddEventComponent},
+  { path: 'EventDetails/:idEvent', component: EventDetailsComponent },
+  { path: 'EventList', component: EventListComponent },
 
-  {path: "EventDetails/:idEvent", component: EventDetailsComponent},
-  {path: "EventList", component: EventListComponent},
+  { path: 'addproduct/:idProduct', component: AddProductComponent },
 
-  {path: "addproduct/:idProduct", component: AddProductComponent},
+  { path: 'ProductDetails/:idProduct', component: ProductDetailsComponent },
+  { path: 'EventTable', component: EventTableComponent },
+  { path: 'ProductCard', component: ProductCardComponent },
+  { path: 'ProductList', component: ListProductComponent },
 
-  {path: "ProductDetails/:idProduct", component: ProductDetailsComponent},
-  {path: "EventTable", component: EventTableComponent},
-  {path: "ProductCard", component: ProductCardComponent},
-  {path: "ProductList", component: ListProductComponent},
+  { path: 'AddCampPlace', component: AddCampPlaceComponent },
+  {
+    path: 'CampPlaceDetails/:idCampPlace',
+    component: CampPlaceDetailsComponent,
+  },
+  { path: 'listCampPlace', component: CampPlaceListComponent },
 
-  {path: "AddCampPlace", component: AddCampPlaceComponent},
-  {path: "CampPlaceDetails/:idCampPlace", component: CampPlaceDetailsComponent},
-  {path: "listCampPlace", component: CampPlaceListComponent},
+  { path: 'CampPlaceTable', component: CampPlaceTableComponent },
 
-  {path: "CampPlaceTable", component: CampPlaceTableComponent},
-
-  {path: "productTable", component: ProductTableComponent},
-  {path: "feddbackList", component: FeedbackListComponent},
-  {path: "reservationList", component: ReservationListComponent},
-
-
+  { path: 'productTable', component: ProductTableComponent },
+  { path: 'feddbackList', component: FeedbackListComponent },
+  { path: 'reservationList', component: ReservationListComponent },*/
+  { path: 'feedback', component: FeedbackComponent },
 
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 
-
-  {path: "**", component: NotFoundComponent}
-
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

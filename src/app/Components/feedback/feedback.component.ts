@@ -8,53 +8,55 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-feedback',
   templateUrl: './feedback.component.html',
-  styleUrls: ['./feedback.component.css']
+  styleUrls: ['./feedback.component.css'],
 })
 export class FeedbackComponent implements OnInit {
   username!: string;
-  feedback: Feedback= new Feedback(0, 3, "", new Date(),0);
+  feedback: Feedback = new Feedback(0, 3, '', new Date(), 0);
 
-  constructor(private route: ActivatedRoute, private feedbackService: FeedbackService,private router: Router) { }
+  constructor(
+    private route: ActivatedRoute,
+    private feedbackService: FeedbackService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-          const id = params.get('idCampPlace');
-          this.feedback.idCampPlace= id;
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('idCampPlace');
+      this.feedback.idCampPlace = id;
     });
-
   }
-    submitFeedback(){
+  submitFeedback() {
+    this.feedbackService.addFeedback(this.feedback).subscribe(
+      (reponse) => {
+        console.log('Feedback added successfully');
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Your Feedback has been saved',
+          showConfirmButton: false,
+          timer: 2500,
+        });
 
-      this.feedbackService.addFeedback(this.feedback).subscribe(
-        reponse =>{
-          console.log('Feedback added successfully');
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Your Feedback has been saved',
-            showConfirmButton: false,
-            timer: 2500
-          });
+        this.router.navigate([
+          '/CampPlaceDetails/' + this.feedback.idCampPlace,
+        ]);
+      },
+      (error) => {
+        console.log(error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong! Unable to add feedback',
+        });
+      }
+    );
+  }
 
-            this.router.navigate(['/CampPlaceDetails/'+this.feedback.idCampPlace]);
+  commentControl: FormControl = new FormControl('');
 
-        },
-        error=>{
-          console.log(error);
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong! Unable to add feedback',
-          });
-        }
-      );
-    }
-
-    commentControl: FormControl = new FormControl('');
-
-
-  min = 0
-  max = 5
+  min = 0;
+  max = 5;
   getRatingLabel(): string {
     // Return the text label based on the rating value
     switch (this.feedback.rating) {
@@ -71,7 +73,5 @@ export class FeedbackComponent implements OnInit {
       default:
         return '';
     }
-
   }
-
 }
